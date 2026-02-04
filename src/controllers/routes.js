@@ -7,6 +7,7 @@ const router = Router();
 import { addDemoHeaders } from '../middleware/demo/headers.js';
 import { catalogPage, courseDetailPage } from './catalog/catalog.js';
 import { homePage, aboutPage, demoPage, testErrorPage } from './index.js';
+import { facultyDetailPage, facultyListPage } from './faculty/faculty.js';
 
 // TODO: Add route definitions
 // Home and basic pages
@@ -16,6 +17,10 @@ router.get('/about', aboutPage);
 // Course catalog routes
 router.get('/catalog', catalogPage);
 router.get('/catalog/:courseId', courseDetailPage);
+
+// Course faculty route
+router.get('/faculty', facultyListPage);
+router.get('/faculty/:facultyId', facultyDetailPage);
 
 // Demo page with special middleware
 router.get('/demo', addDemoHeaders, demoPage);

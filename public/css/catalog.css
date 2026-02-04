@@ -6,7 +6,7 @@
     margin: 0 auto;
 
     .course-card {
-        border: 1px solid #ddd;
+        border: 2px solid #2c5aa0;
         border-radius: 8px;
         padding: 1.5rem;
         background: #fff;
@@ -117,9 +117,10 @@
     .section-list {
         display: grid;
         gap: 1rem;
+        
 
         .section-card {
-            border: 1px solid #ddd;
+            border: 2px solid #2c5aa0;
             border-radius: 6px;
             padding: 1rem;
             background: #f9f9f9;
@@ -154,4 +155,9 @@
             text-decoration: underline;
         }
     }
+
+    p a {
+        white-space: nowrap;
+    }
+
 }

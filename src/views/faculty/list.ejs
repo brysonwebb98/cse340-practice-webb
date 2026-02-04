@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<h1>Faculty Directory</h1>
+<p>Browse our Faculty Members and click on any Member to see detailed information.</p>
+<div class="options">
+    <div class="options-header">
+        <h2>Faculty Lookup</h2>
+        <div class="sort-options">
+            <span>Sort by:</span>
+            <a href="/faculty?sort=department">Department</a>
+            <a href="/faculty?sort=name">Name</a>
+            <a href="/faculty?sort=Title">Title</a>
+        </div>
+    </div>
+</div>
+<% faculty.forEach(member => { %> 
+    <div class="faculty-sorting">
+        <h2>
+            <nav>
+                <a href="/faculty/<%= member.id%>">
+                    <%= member.name %>
+                </a>
+            </nav>
+        </h2>
+        <p><%= member.title%></p>
+        <p><%= member.department%></p>
+    </div>
+<% }); %>
+
+<%- include('../partials/footer') %>
