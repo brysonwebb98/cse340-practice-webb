@@ -1,0 +1,37 @@
+<%- include('../../partials/header') %>
+<main>
+    <h1><%= title %></h1>
+    <p>
+        Enter your email and password to access your account. Do not have an account? <a href="/register">Register here</a>.
+    </p>
+
+    <form method="POST" action="/login" class="login-form">
+        <!-- Email field -->
+        <div class="form-group">
+            <!-- TODO: Add label for email -->
+            <label for="email">Enter Email:</label>
+            <!-- TODO: Add input type="email" with id, name, and required -->
+            <input type="email" id="email" name="email" required placeholder="example@gmail.com">
+            <!-- TODO: Add appropriate placeholder text -->
+        </div>
+
+        <!-- Password field -->
+        <div class="form-group">
+        <!-- TODO: Create form-group div -->
+        <!-- TODO: Add label for password -->
+        <label for="password">Enter Password:</label>
+        <!-- TODO: Add input type="password" with id, name, minlength="8", and required -->
+        <input type="password" id="password" name="password" minlength="8" required placeholder="**********">
+        <!-- TODO: Add appropriate placeholder text -->
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit">Sign In</button>
+        <!-- TODO: Add button type="submit" with text "Sign In" or "Login" -->
+
+        <div class="form-footer">
+            <p>New user? <a href="/register">Create an account</a></p>
+        </div>
+    </form>
+</main>
+<%- include('../../partials/footer') %>
