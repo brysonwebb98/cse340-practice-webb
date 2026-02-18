@@ -1,6 +1,6 @@
 /* Contact Form Styles */
 .contact-form {
-    max-width: 600px;
+    width: 90%;
     margin: 2rem auto;
     padding: 2rem;
     border: 1px solid #ddd;
@@ -30,6 +30,7 @@
             font-size: 1rem;
             font-family: inherit;
             transition: border-color 0.3s ease;
+            text-align: center;
             &:focus {
                 outline: none;
                 border-color: #2c5aa0;
@@ -76,11 +77,13 @@
             line-height: 1.6;
             margin: 0 0 1rem 0;
             white-space: pre-wrap;
+            text-align: center;
         }
         .response-date {
             color: #666;
             font-size: 0.875rem;
             margin: 0;
+            text-align: center;
         }
     }
     .no-responses {

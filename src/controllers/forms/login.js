@@ -38,22 +38,20 @@ const processLogin = async (req, res) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-        // TODO: Log validation errors to console
-        // TODO: Redirect back to /login
-        console.log(errors.array());
-        res.redirect('/login');
-        return;
+        errors.array().forEach((error)=> {
+            req.flash('error', error.msg);
+        });
+        return res.redirect('/login');;
     }
 
-    // TODO: Extract email and password from req.body
-    const {email, password} = req.body
-
     try {
+        // TODO: Extract email and password from req.body
+        const {email, password} = req.body
         // TODO: Find user by email using findUserByEmail()
         // TODO: If not found, log "User not found" and redirect to /login
         const user = await findUserByEmail(email);
         if (!user){
-            console.log('User not found!');
+            req.flash('error', 'Invalid email or password');
             return res.redirect('/login')
         }
 
@@ -62,7 +60,7 @@ const processLogin = async (req, res) => {
         const passwordCorrect = await verifyPassword(password, user.password)
         if (!passwordCorrect)
         {
-            console.log('Invalid Password');
+            req.flash('error', 'Invalid email or password')
             return res.redirect('/login')
         }
 
@@ -72,12 +70,14 @@ const processLogin = async (req, res) => {
         // TODO: Store user in session: req.session.user = user
         // TODO: Redirect to /dashboard
         req.session.user = user
+        req.flash('success', `Successful login. Welcome ${user.name}!`)
         return res.redirect('/dashboard');
     } catch (error) {
         // Model functions do not catch errors, so handle them here
         // TODO: Log error to console
         // TODO: Redirect to /login
-        console.log('Login Error:', error);
+        console.error('Login Error:', error);
+        req.flash('error', 'Error logging in. Please try again later.')
         return res.redirect('/login')
     }
 };
@@ -153,7 +153,19 @@ const showDashboard = (req, res) => {
 
 // Routes
 router.get('/', showLoginForm);
-router.post('/', loginValidation, processLogin);
+router.post('/', loginValidation, 
+    [
+        body('email')
+            .isLength({max:255})
+            .withMessage('Email address is too long'),
+        body('password')
+            .notEmpty()
+            .withMessage('Password is required')
+            .isLength({min: 8, max: 128})
+            .withMessage('Password must be between 8 and 128 characters')
+    ],
+    processLogin
+);
 
 // Export router as default, and specific functions for root-level routes
 export default router;

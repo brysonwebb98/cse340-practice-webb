@@ -7,6 +7,7 @@ import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { caCert } from './src/models/db.js';
 import { startSessionCleanup } from './src/utils/session-cleanup.js';
+import flash from './src/middleware/flash.js';
 
 // Import MVC components
 import routes from './src/controllers/routes.js';
@@ -63,6 +64,9 @@ app.use(session({
         maxAge: 24 * 60 * 60 * 1000
     }
 }));
+
+// Flash message middleware (must come after session and global middleware)
+app.use(flash);
 
 // Start automatic session cleanup
 startSessionCleanup();
