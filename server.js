@@ -1,4 +1,6 @@
 import "dotenv/config";
+console.log("DB_URL:", process.env.DB_URL);
+
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
