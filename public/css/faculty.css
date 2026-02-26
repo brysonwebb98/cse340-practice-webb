@@ -31,6 +31,11 @@
             color: white;
         }
     }
+
+    img {
+        max-width: 50%;
+    }
+
 }
 
 .faculty-list {
@@ -104,7 +109,9 @@
         border-radius: 8px;
         padding: 1.5rem;
         background: #fff;
-        margin-bottom: 1.5rem;
+        margin-bottom: 5px;
+        display: grid;
+        justify-items: center;
 
         h2 {
             color: #2c5aa0;
@@ -118,6 +125,12 @@
             line-height: 1.6;
             display: flex;
             gap: 0.75rem;
+        }
+
+        img {
+            max-width: 50%;
+            margin-bottom: 10px;
+        }
 
         .detail-item strong {
             min-width: 120px;
@@ -187,3 +200,17 @@
         }
     }
 }
+
+
+.faculty-card {
+    position: relative;
+}
+.faculty-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 7px;
+    background: url('https://placehold.co/480') center / cover no-repeat;
+}
+

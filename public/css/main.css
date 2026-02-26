@@ -11,26 +11,27 @@ body {
     align-items: center;
     text-align: center;
 
+    .main-header {
+        width: 100%;
+    }
+
     &.blue-theme { background-color: #e3f2fd; }
     &.green-theme { background-color: #e8f5e8; }
     &.red-theme { background-color: #ffebee; }
     
     & .main-header nav {
-        display: flex;
-        justify-content: space-between;
+        width: 100%;
         border: 1px solid black;
         font-size: 22px;
         padding: 20px;
         margin: 0 auto;
         margin-bottom: 5px;
         border-radius: 10px;
-        list-style: none;
         width: 90%;
-        align-items: center;
-        flex-wrap: wrap;
+        
 
         ul {
-            display: flex;
+            /* display: flex; */
             flex-direction: row;
             list-style-type: none;
             gap: 20px;
@@ -48,6 +49,7 @@ body {
             font-weight: bold;
             &:hover {
                 color: #0066cc;
+                text-decoration: underline;
             }
         }
     }

@@ -1,23 +1,9 @@
-import { body, validationResult } from 'express-validator';
-import { findUserByEmail, verifyPassword } from '../../models/forms/login.js';
 import { Router } from 'express';
+import { validationResult } from 'express-validator';
+import { findUserByEmail, verifyPassword } from '../../models/forms/login.js';
+import { loginValidation } from '../../middleware/validation/forms.js';
 
 const router = Router();
-
-/**
- * Validation rules for login form
- */
-const loginValidation = [
-    body('email')
-        .trim()
-        .isEmail()
-        .withMessage('Please provide a valid email address')
-        .normalizeEmail(),
-
-    body('password')
-        .isLength({ min: 8 })
-        .withMessage('Password is required')
-];
 
 /**
  * Display the login form.
@@ -41,7 +27,7 @@ const processLogin = async (req, res) => {
         errors.array().forEach((error)=> {
             req.flash('error', error.msg);
         });
-        return res.redirect('/login');;
+        return res.redirect('/login');
     }
 
     try {
@@ -153,19 +139,7 @@ const showDashboard = (req, res) => {
 
 // Routes
 router.get('/', showLoginForm);
-router.post('/', loginValidation, 
-    [
-        body('email')
-            .isLength({max:255})
-            .withMessage('Email address is too long'),
-        body('password')
-            .notEmpty()
-            .withMessage('Password is required')
-            .isLength({min: 8, max: 128})
-            .withMessage('Password must be between 8 and 128 characters')
-    ],
-    processLogin
-);
+router.post('/', loginValidation, processLogin);
 
 // Export router as default, and specific functions for root-level routes
 export default router;
